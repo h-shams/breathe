@@ -25,9 +25,9 @@ module.exports = env => {
       }),
 
       new InjectManifest({
-        swSrc: './src/scripts/sw.js',
-        compileSrc: false,
-        swDest: 'sw.js',
+        swSrc: './src/scripts/sw/sw.js',
+        compileSrc: true,
+        swDest: 'sw.bundle.js',
         excludeChunks: ['sw']
       }),
     ],
