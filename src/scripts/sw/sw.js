@@ -13,8 +13,15 @@ self.addEventListener('activate', event => {
 })
 
 self.addEventListener('fetch', event => {
-  console.log('SW: fetch')
-  event.respondWith(fetch(event.request))
+  const requestURL = event.request.url === ENV.baseUrl
+    ? ENV.baseUrl + 'index.html'
+    : event.request.url
+
+  if (ENV.isDev === true) {
+    event.respondWith(fetch(requestURL))
+  } else {
+    event.respondWith(responseFromCache(requestURL, CACHE_NAME, ASSETS_LIST))
+  }
 })
 
 function precache (assetsList, cacheName) {
@@ -32,9 +39,7 @@ function precache (assetsList, cacheName) {
 }
 
 function deleteOldAssets (assetsList, cacheName) {
-  const urlsList = assetsList.map(asset => {
-    return asset.url
-  })
+  const urlsList = assetsList.map(asset => asset.url)
 
   return caches.open(cacheName).then(cache => {
     return cache.keys().then(assetsList => {
@@ -52,3 +57,24 @@ function deleteOldAssets (assetsList, cacheName) {
   })
 }
 
+function urlSplit (url) {
+  return url.slice(ENV.baseUrl.length)
+}
+
+function responseFromCache (requestURL, cacheName, assetsList) {
+  return caches.open(cacheName).then(cache => {
+    return cache.match(requestURL).then(response => {
+      return response || fetch(requestURL).then(response => {
+        // if response status was OK, and request url was in assets list,
+        // then cache response
+        if (response.status.toString().match(/2\d{2}/)) {
+          const urlsList = assetsList.map(asset => asset.url)
+          if (urlsList.includes(urlSplit(requestURL))) {
+            cache.put(requestURL, response.clone())
+          }
+        }
+        return response
+      })
+    })
+  })
+}
