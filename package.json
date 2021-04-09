@@ -6,7 +6,8 @@
     "start": "webpack serve --config webpack.dev.js --env mode=dev",
     "build:dev": "webpack --config webpack.dev.js --env mode=dev",
     "build:local": "webpack --config webpack.prod.js --env mode=localProd",
-    "build:prod": "webpack --config webpack.prod.js --env mode=prod"
+    "build:prod": "webpack --config webpack.prod.js --env mode=prod",
+    "server": "browser-sync start -s ./dist --no-notify --port 5320"
   },
   "author": "Heydar Shams",
   "license": "MIT",
