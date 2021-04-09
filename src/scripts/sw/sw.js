@@ -8,7 +8,8 @@ self.addEventListener('install', event => {
 })
 
 self.addEventListener('activate', event => {
-  console.log('SW: active')
+  console.log('SW: activate')
+  event.waitUntil(deleteOldAssets(ASSETS_LIST, CACHE_NAME))
 })
 
 self.addEventListener('fetch', event => {
@@ -27,6 +28,27 @@ function precache (assetsList, cacheName) {
         console.log(`SW: precache ${urlsList.length} entries in "${cacheName}"`)
       })
       .catch(error => console.log(error))
+  })
+}
+
+function deleteOldAssets (assetsList, cacheName) {
+  const urlsList = assetsList.map(asset => {
+    return asset.url
+  })
+
+  return caches.open(cacheName).then(cache => {
+    return cache.keys().then(assetsList => {
+      return Promise.all(
+        assetsList.map(asset => {
+          const relativeUrl = urlSplit(asset.url)
+          if (!urlsList.includes(relativeUrl)) {
+            console.log(`SW: delete "${relativeUrl}"`)
+            return cache.delete(relativeUrl)
+          }
+          return false
+        })
+      )
+    })
   })
 }
 
