@@ -4,12 +4,20 @@ const ENV = __ENV__
 
 self.addEventListener('install', event => {
   console.log('SW: install')
-  event.waitUntil(precache(ASSETS_LIST, CACHE_NAME))
+  event.waitUntil(
+    precache(ASSETS_LIST, CACHE_NAME).then(result => {
+      return self.skipWaiting()
+    })
+  )
 })
 
 self.addEventListener('activate', event => {
   console.log('SW: activate')
-  event.waitUntil(deleteOldAssets(ASSETS_LIST, CACHE_NAME))
+  event.waitUntil(
+    deleteOldAssets(ASSETS_LIST, CACHE_NAME).then(result => {
+      return self.clients.claim()
+    })
+  )
 })
 
 self.addEventListener('fetch', event => {
