@@ -42,6 +42,7 @@ module.exports = env => {
         merge(manifest, {
           inject: true,
           fingerprints: false,
+          publicPath: '/',
         })
       ),
 
