@@ -7,6 +7,7 @@ const stylelint = require('stylelint');
 const webpackPwaManifest = require('webpack-pwa-manifest')
 const faviconsWebpackPlugin = require('favicons-webpack-plugin')
 const manifest = require('./manifest.json.js')
+const { merge } = require('webpack-merge')
 
 
 module.exports = env => {
@@ -37,7 +38,12 @@ module.exports = env => {
         chunkFilename: '[id].css',
       }),
 
-      new webpackPwaManifest(manifest),
+      new webpackPwaManifest(
+        merge(manifest, {
+          inject: true,
+          fingerprints: false,
+        })
+      ),
 
       new faviconsWebpackPlugin({
         logo: './src/icons/icon_maskable512.png',

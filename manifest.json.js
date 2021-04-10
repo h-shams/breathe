@@ -18,9 +18,4 @@ module.exports = {
       destination: 'icons'
     }
   ],
-
-  // options for 'webpack-pwa-manifest' plugin and not included in output
-  // manifest.json
-  inject: true,
-  fingerprints: false,
 }
