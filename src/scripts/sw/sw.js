@@ -6,7 +6,11 @@ self.addEventListener('install', event => {
   console.log('SW: install')
   event.waitUntil(
     precache(ASSETS_LIST, CACHE_NAME).then(result => {
-      return self.skipWaiting()
+      if (ENV.isDevMode) { // if its development mode, dont skipWaiting()
+        return result
+      } else {
+        return self.skipWaiting()
+      }
     })
   )
 })
@@ -15,7 +19,11 @@ self.addEventListener('activate', event => {
   console.log('SW: activate')
   event.waitUntil(
     deleteOldAssets(ASSETS_LIST, CACHE_NAME).then(result => {
-      return self.clients.claim()
+      if (ENV.isDevMode) { // if its development mode, dont claim clients
+        return result
+      } else {
+        return self.clients.claim()
+      }
     })
   )
 })
@@ -25,7 +33,7 @@ self.addEventListener('fetch', event => {
     ? ENV.baseUrl + 'index.html'
     : event.request.url
 
-  if (ENV.isDev === true) {
+  if (ENV.isDevMode === true) {
     event.respondWith(fetch(requestURL))
   } else {
     event.respondWith(responseFromCache(requestURL, CACHE_NAME, ASSETS_LIST))
