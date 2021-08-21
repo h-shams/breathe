@@ -1,3 +1,15 @@
 {
-  "extends": "stylelint-config-sass-guidelines"
+  "extends": "stylelint-config-sass-guidelines",
+  "rules": {
+    "selector-class-pattern": [
+      "^[a-z0-9\\-_]+$",
+      {
+        "message":
+          "Selector should be written in lowercase with hyphens and undelines (selector-class-pattern)"
+      }
+    ],
+    "order/order": null,
+    "order/properties-order": null,
+    "order/properties-alphabetical-order": null
+  }
 }
