@@ -55,14 +55,6 @@ module.exports = env => {
           ],
         },
 
-        // svg files
-        {
-          test: /\.svg$/,
-          use: [
-            'file-loader'
-          ],
-        },
-
       ],
     },
   })

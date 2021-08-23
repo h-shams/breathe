@@ -90,6 +90,14 @@ module.exports = env => {
           ],
         },
 
+        // image files
+        {
+          test: /\.(svg|jpg|png|webp)$/,
+          use: [
+            'file-loader'
+          ],
+        },
+
       ],
     },
   }

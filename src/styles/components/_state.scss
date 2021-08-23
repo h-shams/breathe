@@ -1,0 +1,14 @@
+.state {
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 500px;
+  color: #fff;
+  padding: 0.4em 1em;
+  transition: 0.3s cubic-bezier(0.08, 0.82, 0.17, 1);
+  transition-property: color, background-color;
+
+  &--active {
+    background-color: #fff;
+    color: #13182a;
+  }
+}
