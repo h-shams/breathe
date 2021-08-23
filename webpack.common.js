@@ -3,11 +3,11 @@ const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const StylelintPlugin = require('stylelint-webpack-plugin');
-const stylelint = require('stylelint');
 const webpackPwaManifest = require('webpack-pwa-manifest')
 const faviconsWebpackPlugin = require('favicons-webpack-plugin')
 const manifest = require('./manifest.json.js')
 const { merge } = require('webpack-merge')
+const ESlintPlugin = require('eslint-webpack-plugin')
 
 
 module.exports = env => {
@@ -22,6 +22,11 @@ module.exports = env => {
 	  },
 
     plugins: [
+      new ESlintPlugin({
+        fix: true,
+        files: './src/'
+      }),
+
       new StylelintPlugin({
         files: '**/*.(s(c|a)ss)', // SCSS or Sass
         fix: true,

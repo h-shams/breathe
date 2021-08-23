@@ -25,18 +25,6 @@ module.exports = env => {
 		module: {
 			rules: [
 
-				// js files
-				{
-					test: /\.js$/,
-					exclude: /node_modules/,
-					use: {
-						loader: 'eslint-loader',
-						options: {
-							fix: true,
-						},
-					},
-				},
-
 				// sass files
 				{
 					test: /\.s[ac]ss$/,
