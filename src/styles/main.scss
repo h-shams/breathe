@@ -1,11 +1,3 @@
-// importing order:
-/*
-  1. utilities/   // sassy things
-  2. base/        // base styles (fonts, basic styles)
-  3. layout/      // big styles
-  4. components/  // its obvious
-*/
-
 @import 'base/fonts';
 @import 'base/typography';
 @import 'base/base';
@@ -15,3 +7,4 @@
 
 @import 'components/state';
 @import 'components/states';
+@import 'components/spinner';
