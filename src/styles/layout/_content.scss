@@ -1,3 +1,25 @@
 .content {
   z-index: 1;
 }
+
+.header {
+
+  margin-bottom: 5em;
+
+  &__title {
+    color: #fff;
+    font-size: 1.5em;
+    margin: 1em;
+    font-weight: 300;
+  }
+}
+
+.states-section {
+  padding: 2em 0;
+}
+
+.states-section__text {
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
