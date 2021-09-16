@@ -1,13 +1,14 @@
-// this file will used in "webpack-pwa-manifest" plugin as options to create
-// a manifest.json file for app
-
+/*
+ * this file will used in "webpack-pwa-manifest" plugin as
+ * options to create a manifest.json file for app
+ */
 module.exports = {
   name: 'Breathe App',
-  short_name: "Breathe",
+  short_name: 'Breathe',
   description: 'Breathe App help you calm down by controling your breathe!',
-  orientation: "portrait",
+  orientation: 'portrait',
   display: 'fullscreen',
-  start_url: ".",
+  start_url: '.',
   theme_color: '#000000',
   background_color: '#ffffff',
   icons: [
