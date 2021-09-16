@@ -2,6 +2,8 @@
   padding: 1em;
   display: table;
   margin: 0 auto;
+  --rotate-time: 7s;
+  --grow-time: 3.5s;
 }
 
 .spinner__ring {
@@ -11,7 +13,7 @@
   padding: 1.75em - (2 * 0.25em);
   border: 0.25em solid rgb(126, 42, 235);
   position: relative;
-  transition: transform ease 3.5s;
+  transition: transform ease var(--grow-time);
   transform: scale(0.9);
 
   .spinner--grow & {
@@ -27,7 +29,7 @@
   left: -0.2em;
   border-radius: 50%;
   border: 1px solid #fff;
-  transition: 3.5s ease;
+  transition: var(--grow-time) ease;
   transition-property: transform opacity;
   z-index: -1;
 }
@@ -68,6 +70,7 @@
   height: 0.75em;
   border-radius: 1em;
   background-color: #fff;
+  transition: transform 1s ease;
 }
 
 @mixin spot-position($angle, $spot-height) {
@@ -88,11 +91,11 @@
 }
 
 .spinner__spot:nth-child(2) {
-  @include spot-position(140deg, 0.75em);
+  @include spot-position(0deg, 0.75em);
 }
 
 .spinner__spot:nth-child(3) {
-  @include spot-position(220deg, 0.75em);
+  @include spot-position(0deg, 0.75em);
 }
 
 .spinner__pointer {
@@ -106,7 +109,7 @@
   box-shadow: 0 0 0 0.2em rgba(255, 255, 255, 0.2);
 
   .spinner--spin & {
-    animation: rotating 7s linear infinite;
+    animation: rotating var(--rotate-time) linear infinite;
   }
 }
 
@@ -129,7 +132,9 @@
 }
 
 .spinner__content-inner {
+  position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 10.5em;
@@ -137,14 +142,36 @@
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.2);
   color: #fff;
-  
 }
 
 .spinner__content-text {
   transform: scale(1);
-  transition: transform ease 3.5s;
+  transition: ease var(--grow-time), ease 0.2s;
+  transition-property: transform, opacity;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  line-height: 2em;
+  height: 2em;
+  margin: auto;
 
   .spinner--grow & {
     transform: scale(0.9);
+  }
+
+  &--old {
+    opacity: 1;
+  }
+  
+  &--new {
+    opacity: 0;
+  }
+  
+  .spinner__content-inner--text-change &--old {
+    opacity: 0;
+  }
+  
+  .spinner__content-inner--text-change &--new {
+    opacity: 1;
   }
 }

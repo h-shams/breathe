@@ -1,4 +1,5 @@
 import '../styles/main.scss'
+import { setState, setSpinner, toggleRotate } from './spinner.js'
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.bundle.js').then(registration => {
@@ -11,4 +12,28 @@ if ('serviceWorker' in navigator) {
   console.log('service worker is not available')
 }
 
-console.log('INDEX.JS')
+const stateButtons = [...document.querySelectorAll('.state')]
+stateButtons.forEach(state => {
+  state.addEventListener('click', stateClickHandler)
+})
+
+let currentState = null
+function stateClickHandler (event) {
+  const value = event.target.dataset.value
+  currentState = value
+  event.target.classList.add('state--active')
+
+  stateButtons.forEach(state => {
+    if (state.dataset.value !== value) {
+      state.classList.remove('state--active')
+    }
+  })
+
+  setState(currentState)
+  setSpinner()
+}
+
+const spinnerButton = document.querySelector('.spinner__content-inner')
+spinnerButton.addEventListener('click', event => {
+  toggleRotate()
+})
