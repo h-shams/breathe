@@ -7,6 +7,10 @@
   transition: 0.3s cubic-bezier(0.08, 0.82, 0.17, 1);
   transition-property: color, background-color;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   &--active {
     background-color: #fff;
     color: #13182a;

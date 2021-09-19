@@ -4,6 +4,9 @@ const spots = document.querySelectorAll('.spinner__spot')
 const textContainer = document.querySelector('.spinner__content-inner')
 const oldText = document.querySelector('.spinner__content-text--old')
 const newText = document.querySelector('.spinner__content-text--new')
+const timer = document.querySelector('.timer')
+const buttonWrapper = document.querySelector('.spinner-button-wrapper')
+const statesSection = document.querySelector('.states-section')
 
 let state = null
 let data = null
@@ -63,26 +66,37 @@ function setText (text) {
   }, 250)
 }
 
-let rotateState = false
-export function toggleRotate () {
-  if (!data) {
-    return
-  }
-  if (!rotateState) {
-    startRotate()
-  } else {
-    endRotate()
-  }
+function setTimer (timeInSeconds) {
+  let minutes = Math.floor(timeInSeconds / 60)
+  if (minutes < 10) minutes = '0' + minutes
+  let seconds = timeInSeconds % 60
+  if (seconds < 10) seconds = '0' + seconds
+  const timeString = `PT${minutes}M${seconds}S`
+  timer.setAttribute('datetime', timeString)
+  timer.innerHTML = `${minutes}:${seconds}`
 }
 
+let rotateState = false
 let animationFrameId = null
-function startRotate () {
-  let start; let count = 1
+export function startRotate () {
+  if (!data) return
+  if (rotateState) return
+  let loopStart
+  let start
+  let count = 1
   rotateState = true
   spinner.classList.add('spinner--spin')
+  setTimer(all * data.count)
+  bottonWrapperControl('open')
+  statesSectionControl('hidden')
+
   function step (timestamp) {
+    if (loopStart === undefined) { loopStart = timestamp }
     if (start === undefined) { start = timestamp }
-    const time = (timestamp - start) / 1000
+    const time = (timestamp - loopStart) / 1000
+    const totalTime = Math.floor((timestamp - start) / 1000)
+    const remainingTime = Math.floor(all * data.count - totalTime)
+    setTimer(remainingTime)
     if (time > 0 && time < inside) {
       spinner.style.setProperty('--grow-time', inside * 0.93 + 's')
       setText('breathe in')
@@ -95,7 +109,7 @@ function startRotate () {
       shrink()
     }
     if (time >= all) {
-      start = timestamp
+      loopStart = timestamp
       count++
     }
     if (count > data.count) endRotate()
@@ -104,13 +118,15 @@ function startRotate () {
   requestAnimationFrame(step)
 }
 
-function endRotate () {
+export function endRotate () {
   cancelAnimationFrame(animationFrameId)
   spinner.style.setProperty('--grow-time', '1.5s')
   spinner.classList.remove('spinner--spin')
   rotateState = false
   shrink()
   setText('start')
+  bottonWrapperControl('close')
+  statesSectionControl('visible')
 }
 
 function grow () {
@@ -119,4 +135,26 @@ function grow () {
 
 function shrink () {
   spinner.classList.remove('spinner--grow')
+}
+
+function bottonWrapperControl (state) {
+  switch (state) {
+    case 'open':
+      buttonWrapper.classList.add('spinner-button-wrapper--expand')
+      break
+    case 'close':
+      buttonWrapper.classList.remove('spinner-button-wrapper--expand')
+      break
+  }
+}
+
+function statesSectionControl (state) {
+  switch (state) {
+    case 'hidden':
+      statesSection.classList.add('states-section--hidden')
+      break
+    case 'visible':
+      statesSection.classList.remove('states-section--hidden')
+      break
+  }
 }

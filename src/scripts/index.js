@@ -1,5 +1,5 @@
 import '../styles/main.scss'
-import { setState, setSpinner, toggleRotate } from './spinner.js'
+import { setState, setSpinner, startRotate, endRotate } from './spinner.js'
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.bundle.js').then(registration => {
@@ -33,7 +33,12 @@ function stateClickHandler (event) {
   setSpinner()
 }
 
-const spinnerButton = document.querySelector('.spinner__content-inner')
-spinnerButton.addEventListener('click', event => {
-  toggleRotate()
+const spinnerStartButton = document.querySelector('.spinner__content-inner')
+spinnerStartButton.addEventListener('click', () => {
+  startRotate()
+})
+
+const spinnerEndButton = document.querySelector('.spinner-button')
+spinnerEndButton.addEventListener('click', () => {
+  endRotate()
 })

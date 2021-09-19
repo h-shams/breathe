@@ -5,5 +5,9 @@
   background-color: #444959;
   border: 0;
   border-radius: 0.35em;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 

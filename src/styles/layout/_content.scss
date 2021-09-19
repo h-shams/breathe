@@ -17,10 +17,35 @@
   }
 }
 
+.spinner-button-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.75s ease-in-out;
+  border-radius: 0.35em;
+
+  &--expand {
+    max-height: 10em;
+  }
+}
+
 .states-section {
   padding: 2em 0;
   width: 100%;
+  transition: all 0.3s ease;
+  
+  &--hidden .state {
+    color: #aaa;
+    border-color: #aaa;
+
+  }
+
+  &--hidden .state--active {
+    background-color: #aaa;
+    color: #555;
+  }
 }
+
+
 
 .states-section__text {
   font-size: 0.9em;
