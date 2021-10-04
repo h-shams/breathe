@@ -31,7 +31,7 @@
   border: 1px solid #fff;
   transition: var(--grow-time) ease;
   transition-property: transform opacity;
-  z-index: -1;
+  @include z-index('spinner-wave');
 }
 
 .spinner__wave:nth-child(1) {

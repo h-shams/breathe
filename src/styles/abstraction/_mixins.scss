@@ -1,0 +1,7 @@
+@mixin z-index($name) {
+  @if map-get($z-index, $name) {
+    z-index: map-get($z-index, $name);
+  } @else {
+    @error 'Property "#{$name}" must a valid z-index id.';
+  }
+}
