@@ -1,0 +1,21 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: stretch;
+  padding: 2em 1em;
+  @include z-index('overlay');
+  pointer-events: none;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  
+  &--open {
+    pointer-events: all;
+    background-color: #0005;
+  }
+}

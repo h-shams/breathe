@@ -5,6 +5,7 @@
 @import 'base/typography';
 @import 'base/base';
 
+@import 'layout/overlay';
 @import 'layout/background';
 @import 'layout/content';
 
@@ -13,4 +14,5 @@
 @import 'components/spinner';
 @import 'components/spinner-button';
 @import 'components/timer';
+@import 'components/modal';
 
