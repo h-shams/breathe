@@ -8,7 +8,7 @@
 
   @include mq('very-tall') {
     margin-top: 5em;
-    margin-top: calc(40vh - 18em);
+    margin-top: calc(40vh - 14em);
   }
 
   @include mq('two-column') {
