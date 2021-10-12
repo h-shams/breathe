@@ -8,5 +8,6 @@ $z-index: (
 
 // media query conditions
 $mq-conditions: (
-  'two-column': 'min-width: 46em'
+  'two-column': 'min-width: 46em',
+  'very-tall': 'max-aspect-ratio: 9/16'
 );

@@ -5,6 +5,15 @@
   --rotate-time: 7s;
   --grow-time: 3.5s;
   justify-self: center;
+
+  @include mq('very-tall') {
+    margin-top: 5em;
+    margin-top: calc(40vh - 18em);
+  }
+
+  @include mq('two-column') {
+    margin-top: 0.75em;
+  }
 }
 
 .spinner__ring {
