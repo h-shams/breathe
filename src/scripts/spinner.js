@@ -52,6 +52,7 @@ export function setSpinner () {
   spinner.style.setProperty('--grow-time', Math.min(inside, out) * 0.93 + 's')
 
   setText('start')
+  setTimer(all * data.count)
 }
 
 function setText (text) {
@@ -69,7 +70,7 @@ function setText (text) {
 function setTimer (timeInSeconds) {
   let minutes = Math.floor(timeInSeconds / 60)
   if (minutes < 10) minutes = '0' + minutes
-  let seconds = timeInSeconds % 60
+  let seconds = Math.floor(timeInSeconds) % 60
   if (seconds < 10) seconds = '0' + seconds
   const timeString = `PT${minutes}M${seconds}S`
   timer.setAttribute('datetime', timeString)
@@ -86,7 +87,7 @@ export function startRotate () {
   let count = 1
   rotateState = true
   spinner.classList.add('spinner--spin')
-  setTimer(all * data.count)
+  // setTimer(all * data.count)
   bottonWrapperControl('open')
   statesSectionControl('hidden')
 
