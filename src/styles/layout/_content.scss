@@ -37,18 +37,22 @@
 .spinner-button-wrapper {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.75s ease-in-out;
+  transition: 0.75s ease-in-out;
+  transition-property: max-height;
   border-radius: 0.35em;
-
+  pointer-events: none;
+  
   @include mq('two-column') {
     max-height: 10em;
     opacity: 0.5;
     grid-column-end: -1;
     align-self: start;
+    transition-property: max-height, opacity;
   }
-
+  
   &--expand {
     max-height: 10em;
+    pointer-events: all;
     @include mq('two-column') {
       opacity: 1;
     }
