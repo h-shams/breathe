@@ -63,24 +63,27 @@
   padding: 2em 0;
   width: 100%;
   transition: all 0.3s ease;
-
   flex-grow: 1;
   justify-self: end;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
+  pointer-events: all;
 
   @include mq('two-column') {
     grid-area: states;
     display: block;
   }
+
+  &--hidden {
+    pointer-events: none;
+  }
   
   &--hidden .state {
     color: #aaa;
     border-color: #aaa;
-
   }
-
+  
   &--hidden .state--active {
     background-color: #aaa;
     color: #555;
