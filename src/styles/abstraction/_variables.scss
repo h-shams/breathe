@@ -5,3 +5,8 @@ $z-index: (
   'spinner-wave': -1,
   'background': -1000
 );
+
+// media query conditions
+$mq-conditions: (
+  'two-column': 'min-width: 46em'
+);

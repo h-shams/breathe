@@ -4,12 +4,22 @@
   width: 100%;
   position: relative;
   padding: 0;
+
+  display: flex;
+  justify-content: center;
+
   
   &__wrapper {
     display: flex;
     overflow-x: auto;
-    width: 100%;
     padding: 0.4em 1em 0.9em;
+
+    @include mq('two-column') {
+      overflow-x: visible;
+      flex-flow: row wrap;
+      gap: 1.1em 0;
+      justify-content: center;
+    }
   }
 
   &::after {
@@ -22,10 +32,12 @@
     display: block;
     background-image: linear-gradient(90deg, transparent, #13182a);
     pointer-events: none;
+    @include mq('two-column') {
+      opacity: 0;
+    }
   }
 
   &__state-wrapper {
     margin: 0 0.5em;
   }
 }
-

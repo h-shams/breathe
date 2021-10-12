@@ -5,3 +5,16 @@
     @error 'Property "#{$name}" must a valid z-index id.';
   }
 }
+
+@mixin mq($condition-name) {
+  $condition: '';
+  @if map-get($mq-conditions, $condition-name) {
+    $condition: map-get($mq-conditions, $condition-name);
+  } @else {
+    @error 'Property "#{$condition-name}" must a valid media query condition name.';
+  }
+
+  @media (#{$condition}) {
+    @content;
+  }
+}

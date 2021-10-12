@@ -6,8 +6,11 @@
   border: 0;
   border-radius: 0.35em;
 
+  // 
+  display: block;
+  margin: 0 auto;
+
   &:hover {
     cursor: pointer;
   }
 }
-
