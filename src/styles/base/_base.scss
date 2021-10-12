@@ -14,7 +14,7 @@ body {
   height: 100%;
   @include mq('two-column') {
     display: grid;
-    align-content: center;
+    align-content: stretch;
     justify-content: center;
   }
 }
