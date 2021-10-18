@@ -1,0 +1,50 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+
+  &__img {
+    border-radius: 0.75em;
+    overflow: hidden;
+    max-width: 15em;
+  }
+
+  &__version {
+    color: #888;
+  }
+
+  &__link {
+    color: #007cbb;
+    font-weight: bold;
+  }
+
+  &__link--with-icon {
+    padding: 0.5em 1em;
+    background-color: #ddd;
+    display: block;
+    margin: 0.25em;
+    border-radius: 0.25em;
+    border: 1px solid #ccc;
+    color: #444;
+    text-decoration: none;
+    text-align: center;
+    font-weight: normal;
+  }
+  
+  &__link--with-icon:hover {
+    text-decoration: underline;
+  }
+
+  &__links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  &__links-list-item {
+    width: 50%;
+    flex-basis: 50%;
+  }
+}
