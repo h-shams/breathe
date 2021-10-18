@@ -73,13 +73,11 @@ module.exports = env => {
 
     module: {
       rules: [
-
+        
         //fonts
         {
           test: /\.ttf$/,
-          use: [
-            'file-loader'
-          ],
+          type: 'asset/resource',
         },
 
         // html files
@@ -93,9 +91,7 @@ module.exports = env => {
         // image files
         {
           test: /\.(svg|jpg|png|webp)$/,
-          use: [
-            'file-loader'
-          ],
+          type: 'asset/resource',
         },
 
       ],
