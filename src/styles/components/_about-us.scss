@@ -1,25 +1,33 @@
 .about {
   display: flex;
   flex-direction: column;
+  align-items: center;
   align-content: center;
+  text-align: center;
+  width: 70vw;
+  max-width: 30em;
+  margin: 0 auto;
 
   &__img {
     border-radius: 0.75em;
     overflow: hidden;
     max-width: 15em;
+    width: 100%;
   }
 
   &__version {
     color: #888;
+    display: block;
+    align-self: stretch;
+    text-align: left;
   }
 
   &__link {
     color: #007cbb;
-    font-weight: bold;
   }
 
   &__link--with-icon {
-    padding: 0.5em 1em;
+    padding: 0.75em 1em;
     background-color: #ddd;
     display: block;
     margin: 0.25em;
@@ -29,6 +37,11 @@
     text-decoration: none;
     text-align: center;
     font-weight: normal;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   &__link--with-icon:hover {
@@ -41,10 +54,18 @@
     margin: 0;
     display: flex;
     flex-flow: row wrap;
+    gap: 0.25em;
+    justify-content: center;
+  }
+  
+  &__links-list-item {
+    flex-grow: 1;
+    max-width: 12em;
   }
 
-  &__links-list-item {
-    width: 50%;
-    flex-basis: 50%;
+  &__copyright {
+    text-align: center;
+    display: block;
+    margin-top: 3em;
   }
 }
