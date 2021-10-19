@@ -21,6 +21,7 @@
 
 .header {
   width: 100%;
+  padding: 2em;
 
   @include mq('two-column') {
     grid-area: header;
@@ -29,8 +30,31 @@
   &__title {
     color: #fff;
     font-size: 1.5em;
-    margin: 1em;
+    margin: 0;
     font-weight: 300;
+    float: left;
+  }
+
+  &__about-button {
+    font-size: 1.1em;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.3em; // magic number
+    padding: 0;
+    float: right;
+    border-radius: 50%;
+    border: 0.128em solid #fff;
+    background-color: transparent;
+    color: #fff;
+    text-align: center;
+    transition: 0.3s ease;
+    transition-property: background-color, color;
+  }
+
+  &__about-button:hover {
+    background-color: #fff;
+    color: #2850c2;
+    cursor: pointer;
   }
 }
 
