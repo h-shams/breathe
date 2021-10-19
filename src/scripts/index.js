@@ -63,3 +63,9 @@ function modalToggle (modal, state) {
       break
   }
 }
+
+const aboutModal = document.querySelector('#about-modal')
+const aboutButton = document.querySelector('.header__about-button')
+aboutButton.addEventListener('click', e => {
+  modalToggle(aboutModal, 'open')
+})
