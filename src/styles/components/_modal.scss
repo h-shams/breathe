@@ -37,18 +37,22 @@
     height: 15em;
     background-color: #0005;
     margin: 0 auto;
+    opacity: 0;
+    transition: 0.3s ease opacity;
   }
-  
+
   &__overlay::after {
     top: 0;
-    box-shadow: 3em 3em 5em rgba(0, 0, 0, 0.6);
+    box-shadow: 3em 3em 5em rgba(38, 59, 64, 0.36);
     transform: rotate(45deg) skew(-25deg, -25deg) translate(-18em, -18em);
+    opacity: var(--top-opacity);
   }
   
   &__overlay::before {
     bottom: 0;
-    box-shadow: -3em -3em 5em rgba(0, 0, 0, 0.6);
+    box-shadow: -3em -3em 5em rgba(38, 59, 64, 0.36);
     transform: rotate(45deg) skew(-25deg, -25deg) translate(18em, 18em);
+    opacity: var(--bottom-opacity);
   }
 
   &__header {
