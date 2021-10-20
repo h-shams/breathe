@@ -71,6 +71,12 @@
     background-color: #ddd;
     border-radius: 0.25em;
     padding: 0.5em 1em;
+    transition: 0.3s ease background-color;
+  }
+
+  &__button:hover {
+    cursor: pointer;
+    background-color: #bbb;
   }
 
   &__body {
