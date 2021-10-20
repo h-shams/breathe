@@ -32,9 +32,9 @@ function scrollHandler (event) {
 }
 
 function setModalShadow (overlay, body) {
-  const offset = 50
   const scrollMax = body.scrollHeight - body.clientHeight
   const scroll = body.scrollTop
+  const offset = scrollMax < 50 ? scrollMax / 2 : 50
   const style = overlay.style
 
   if (scroll < offset) {
