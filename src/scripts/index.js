@@ -1,5 +1,6 @@
 import '../styles/main.scss'
 import { setState, setSpinner, startRotate, endRotate } from './spinner.js'
+import { openModal } from './modal.js'
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.bundle.js').then(registration => {
@@ -43,29 +44,8 @@ spinnerEndButton.addEventListener('click', () => {
   endRotate()
 })
 
-const overlay = document.querySelector('.overlay')
-const modlasList = overlay.querySelectorAll('.modal')
-modlasList.forEach(modal => {
-  const btn = modal.querySelector('.modal__button')
-  btn.addEventListener('click', () => modalToggle(modal, 'close'))
-})
-
-function modalToggle (modal, state) {
-  switch (state) {
-    case 'open':
-      console.log('open')
-      modal.classList.add('modal--open')
-      overlay.classList.add('overlay--open')
-      break
-    case 'close':
-      modal.classList.remove('modal--open')
-      overlay.classList.remove('overlay--open')
-      break
-  }
-}
-
 const aboutModal = document.querySelector('#about-modal')
 const aboutButton = document.querySelector('.header__about-button')
-aboutButton.addEventListener('click', e => {
-  modalToggle(aboutModal, 'open')
+aboutButton.addEventListener('click', () => {
+  openModal(aboutModal)
 })

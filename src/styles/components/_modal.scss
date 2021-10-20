@@ -1,12 +1,14 @@
 .modal {
-  background-color: #fff;
-  border-radius: 0.35em;
-  padding: 1em 0;
-  box-shadow: 0 0 1em #0002;
-  color: #555;
   max-height: 100%;
+  max-width: 40em;
   display: flex;
   flex-flow: column nowrap;
+  padding: 1em 0;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 0.35em;
+  box-shadow: 0 0 1em #0002;
+  color: #555;
   opacity: 0;
   pointer-events: none;
   transition: 0.3s ease;
@@ -23,7 +25,36 @@
     height: 100%;
     margin: 1em 0;
     position: relative;
-    overflow-y: hidden;
+    overflow: hidden;
+  }
+
+  &__overlay::after,
+  &__overlay::before {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: block;
+    width: 15em;
+    height: 15em;
+    background-color: #0005;
+    margin: 0 auto;
+    opacity: 0;
+    transition: 0.3s ease opacity;
+  }
+
+  &__overlay::after {
+    top: 0;
+    box-shadow: 3em 3em 5em rgba(38, 59, 64, 0.36);
+    transform: rotate(45deg) skew(-25deg, -25deg) translate(-18em, -18em);
+    opacity: var(--top-opacity, 0);
+  }
+  
+  &__overlay::before {
+    bottom: 0;
+    box-shadow: -3em -3em 5em rgba(38, 59, 64, 0.36);
+    transform: rotate(45deg) skew(-25deg, -25deg) translate(18em, 18em);
+    opacity: var(--bottom-opacity, 0);
   }
 
   &__header {
@@ -42,6 +73,12 @@
     background-color: #ddd;
     border-radius: 0.25em;
     padding: 0.5em 1em;
+    transition: 0.3s ease background-color;
+  }
+
+  &__button:hover {
+    cursor: pointer;
+    background-color: #bbb;
   }
 
   &__body {
