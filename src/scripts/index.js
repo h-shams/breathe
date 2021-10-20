@@ -42,24 +42,3 @@ const spinnerEndButton = document.querySelector('.spinner-button')
 spinnerEndButton.addEventListener('click', () => {
   endRotate()
 })
-
-const overlay = document.querySelector('.overlay')
-const modlasList = overlay.querySelectorAll('.modal')
-modlasList.forEach(modal => {
-  const btn = modal.querySelector('.modal__button')
-  btn.addEventListener('click', () => modalToggle(modal, 'close'))
-})
-
-function modalToggle (modal, state) {
-  switch (state) {
-    case 'open':
-      console.log('open')
-      modal.classList.add('modal--open')
-      overlay.classList.add('overlay--open')
-      break
-    case 'close':
-      modal.classList.remove('modal--open')
-      overlay.classList.remove('overlay--open')
-      break
-  }
-}
