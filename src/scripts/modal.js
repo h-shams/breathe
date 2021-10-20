@@ -37,16 +37,20 @@ function setModalShadow (overlay, body) {
   const offset = scrollMax < 50 ? scrollMax / 2 : 50
   const style = overlay.style
 
+  if (scrollMax === 0) {
+    return
+  }
+
   if (scroll < offset) {
     style.setProperty('--top-opacity', scroll / offset)
     if (style.getPropertyValue('--bottom-opacity') !== '1') {
       style.setProperty('--bottom-opacity', 1)
     }
   } else if (scroll > scrollMax - offset) {
+    style.setProperty('--bottom-opacity', (-scroll + scrollMax) / offset)
     if (style.getPropertyValue('--top-opacity') !== '1') {
       style.setProperty('--top-opacity', 1)
     }
-    style.setProperty('--bottom-opacity', (-scroll + scrollMax) / offset)
   } else {
     if (style.getPropertyValue('--bottom-opacity') !== '1') {
       style.setProperty('--bottom-opacity', 1)

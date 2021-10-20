@@ -45,14 +45,14 @@
     top: 0;
     box-shadow: 3em 3em 5em rgba(38, 59, 64, 0.36);
     transform: rotate(45deg) skew(-25deg, -25deg) translate(-18em, -18em);
-    opacity: var(--top-opacity);
+    opacity: var(--top-opacity, 0);
   }
   
   &__overlay::before {
     bottom: 0;
     box-shadow: -3em -3em 5em rgba(38, 59, 64, 0.36);
     transform: rotate(45deg) skew(-25deg, -25deg) translate(18em, 18em);
-    opacity: var(--bottom-opacity);
+    opacity: var(--bottom-opacity, 0);
   }
 
   &__header {
