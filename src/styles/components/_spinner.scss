@@ -40,7 +40,7 @@
   border-radius: 50%;
   border: 1px solid #fff;
   transition: var(--grow-time) ease;
-  transition-property: transform opacity;
+  transition-property: transform, opacity;
   @include z-index('spinner-wave');
 }
 
