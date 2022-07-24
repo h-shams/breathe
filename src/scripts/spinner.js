@@ -68,6 +68,7 @@ export function setSpinner () {
 
   setText('start')
   setTimer(all * data.count)
+  spinner.classList.add('spinner--ready')
 }
 
 function setBorderGradients (angles) {
@@ -113,6 +114,7 @@ export function startRotate () {
   let count = 1
   rotateState = true
   spinner.classList.add('spinner--spin')
+  spinner.classList.remove('spinner--ready')
   // setTimer(all * data.count)
   bottonWrapperControl('open')
   statesSectionControl('hidden')
@@ -149,6 +151,7 @@ export function endRotate () {
   cancelAnimationFrame(animationFrameId)
   spinner.style.setProperty('--grow-time', '1.5s')
   spinner.classList.remove('spinner--spin')
+  spinner.classList.add('spinner--ready')
   rotateState = false
   shrink()
   setText('start')
