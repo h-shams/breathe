@@ -54,12 +54,12 @@
     clip-path: path('M120,0C53.73,0,0,53.73,0,120s53.73,120,120,120s120-53.73,120-120S186.27,0,120,0z M120,236C55.93,236,4,184.07,4,120 S55.93,4,120,4s116,51.93,116,116S184.07,236,120,236z');
     background-image:
       conic-gradient(#0dd7db 0deg,
-      #14aace var(--spot1-angle, 180deg),
+      #2799e6 var(--spot1-angle, 180deg),
       #454a58 var(--spot1-angle, 180deg),
       #454a58 var(--spot2-angle, 180deg),
-      #3b88fe var(--spot2-angle, 180deg),
+      #2799e6 var(--spot2-angle, 180deg),
       #947cfc 360deg);
-    z-index: -2;
+    @include z-index('spinner-border');    
   }
   
   &::after {
@@ -77,10 +77,10 @@
     background-color: rgb(126, 42, 235);
     background-image:
       conic-gradient(#0dd7db 0deg,
-      #14aace 180deg,
-      #3b88fe 180deg,
+      #14aace 160deg,
+      #3b88fe 200deg,
       #947cfc 360deg);
-    z-index: -1;
+    @include z-index('spinner-border-overlay');
   }
   
   .spinner--border-animation &::after {

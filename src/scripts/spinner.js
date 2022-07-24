@@ -60,7 +60,7 @@ export function setSpinner () {
     previusAngles.every((prevAngle, i) => prevAngle === angles[i])
 
   if (!isAnglesUnchanged) {
-    setBoarderGradients(angles)
+    setBorderGradients(angles)
   }
 
   spinner.style.setProperty('--rotate-time', all + 's')
@@ -70,7 +70,7 @@ export function setSpinner () {
   setTimer(all * data.count)
 }
 
-function setBoarderGradients (angles) {
+function setBorderGradients (angles) {
   spinner.classList.add('spinner--border-animation')
   setTimeout(() => {
     spinner.style.setProperty('--spot1-angle', angles[1] + 'deg')
