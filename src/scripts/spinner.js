@@ -36,6 +36,13 @@ export function setSpinner () {
     (inside / all) * 360,
     ((inside + hold) / all) * 360
   ]
+
+  const previusAngles = [
+    0,
+    Number.parseFloat(spinner.style.getPropertyValue('--spot1-angle')),
+    Number.parseFloat(spinner.style.getPropertyValue('--spot2-angle'))
+  ]
+
   spots.forEach((spot, i) => {
     const rotate = `rotate(${angles[i]}deg)`
     let transform
@@ -48,11 +55,30 @@ export function setSpinner () {
     spot.style.transform = transform
   })
 
+  // change border gradient
+  const isAnglesUnchanged =
+    previusAngles.every((prevAngle, i) => prevAngle === angles[i])
+
+  if (!isAnglesUnchanged) {
+    setBoarderGradients(angles)
+  }
+
   spinner.style.setProperty('--rotate-time', all + 's')
   spinner.style.setProperty('--grow-time', Math.min(inside, out) * 0.93 + 's')
 
   setText('start')
   setTimer(all * data.count)
+}
+
+function setBoarderGradients (angles) {
+  spinner.classList.add('spinner--border-animation')
+  setTimeout(() => {
+    spinner.style.setProperty('--spot1-angle', angles[1] + 'deg')
+    spinner.style.setProperty('--spot2-angle', angles[2] + 'deg')
+    setTimeout(() => {
+      spinner.classList.remove('spinner--border-animation')
+    }, 500)
+  }, 500)
 }
 
 function setText (text) {
