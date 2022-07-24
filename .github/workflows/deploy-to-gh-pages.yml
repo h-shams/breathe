@@ -6,21 +6,20 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install Node 12.x
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
       - run: npm ci
-      - run: npm run build:prod
+      - run: npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
